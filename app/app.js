@@ -1,4 +1,4 @@
-angular.module('carteira', ['ngRoute'])
+angular.module('template_ang', ['ngRoute'])
 .config(function ($routeProvider, $locationProvider) {
     //retirar o hashbang da url
     $locationProvider.hashPrefix('');

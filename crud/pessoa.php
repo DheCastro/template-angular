@@ -10,19 +10,18 @@ class Pessoa
     $password = "";
   
 
-    // Create connection
+    // Cria conexao
     $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection
       if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        die("Conexão falhou: " . $conn->connect_error);
        }else{
         $this->conn=$conn;  
        }
 
     }
 
-
     
+    // Lista pessoas
     public function pessoa_list($page=1,$search_input=''){
        $perpage=10;
        $page=($page-1)*$perpage;
@@ -33,7 +32,7 @@ class Pessoa
        }
       
      
-       $sql = "SELECT * FROM pessoas $search ORDER BY pessoa_id desc LIMIT $page,$perpage";
+       $sql = "SELECT * FROM pessoa $search ORDER BY pessoa_id desc LIMIT $page,$perpage";
      
        $query=  $this->conn->query($sql);
        $pessoa=array();
@@ -44,99 +43,36 @@ class Pessoa
        }
        
        
-    $count_sql = "SELECT COUNT(*) FROM pessoas $search";
-    $query=  $this->conn->query($count_sql);
-    $total = mysqli_fetch_row($query);
-    $pessoa['total'][]= $total;
+      $count_sql = "SELECT COUNT(*) FROM pessoa $search";
+      $query=  $this->conn->query($count_sql);
+      $total = mysqli_fetch_row($query);
+      $pessoa['total'][]= $total;
        
        
     return $pessoa;  
     }
     
-    public function create_pessoa_info($post_data=array()){
-         
-    
-       $pessoa_nome='';
-       if(isset($post_data->pessoa_nome)){
-       $pessoa_name= mysqli_real_escape_string($this->conn,trim($post_data->pessoa_name));
-       }
-       
-       $sql="INSERT INTO pessoas (pessoa_name, email_address, contact,country,gender) VALUES ('$pessoa_name', '$email_address', '$contact','$country','$gender')";
-        
-        $result=  $this->conn->query($sql);
-        
-        if($result){
-          return 'Succefully Created pessoa Info';     
-        }else{
-           return 'An error occurred while inserting data';     
-        }
-          
-       
-       
-       
-        
-    }
-    
-    public function view_pessoa_by_pessoa_id($id){
-       if(isset($id)){
-       $pessoa_id= mysqli_real_escape_string($this->conn,trim($id));
-      
-       $sql="Select * from pessoas where pessoa_id='$pessoa_id'";
-        
-       $result=  $this->conn->query($sql);
-     
-        return $result->fetch_assoc(); 
-    
-       }  
-    }
-    
-    
-    public function update_pessoa_info($post_data=array()){
-       if( isset($post_data->pessoa_id)){
-       $pessoa_id=mysqli_real_escape_string($this->conn,trim($post_data->pessoa_id));
-           
+
+    // insert de Pessoa no banco
+    public function criar_pessoa($post_data=array()){
        $pessoa_nome='';
        if(isset($post_data->pessoa_nome)){
        $pessoa_nome= mysqli_real_escape_string($this->conn,trim($post_data->pessoa_nome));
        }
        
-       $sql="UPDATE pessoas SET pessoa_nome='$pessoa_nome' WHERE pessoa_id =$pessoa_id";
-     
+       $sql="INSERT INTO pessoa (pessoa_nome) VALUES ('$pessoa_nome')";
+        
         $result=  $this->conn->query($sql);
         
-         
-         unset($post_data->pessoa_id); 
-         if($result){
-          return 'Succefully Updated pessoa Info';     
+        if($result){
+          return 'Pessoa criada com sucesso';     
         }else{
-         return 'An error occurred while inserting data';     
+           return 'Erro ao inserir registro';     
         }
           
-           
-           
-      
-       }   
     }
     
-    public function delete_pessoa_info_by_id($id){
-        
-       if(isset($id)){
-       $pessoa_id= mysqli_real_escape_string($this->conn,trim($id));
-
-       $sql="DELETE FROM  pessoas  WHERE pessoa_id =$pessoa_id";
-        $result=  $this->conn->query($sql);
-        
-         if($result){
-          return 'Successfully Deleted pessoa Info';     
-        }else{
-         return 'An error occurred while inserting data';     
-        }
-          
-        
-           
-       }
-        
-    }
+   
     function __destruct() {
     mysqli_close($this->conn);  
     }

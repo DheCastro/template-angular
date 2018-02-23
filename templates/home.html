@@ -1,15 +1,17 @@
 <main>
 	
 	<div class="container" > 
-
-		<div class="row">
-			<div class="input-field col s6">
-	        	<input placeholder="Nome" id="nome" ng-model="nome" type="text" class="validate">
-	        </div>
-    	</div>
-	 
-	 	<button ng-click="subNome(nome)" class="btn waves-effect waves-light blue" type="submit" name="action">SubNome</button>
-	   
+		<form method="post"  id="criar_pessoa_form" ng-submit="indControl.addPessoa(pessoa)" >
+			<div class="row">
+				
+					<div class="input-field col s6">
+			        	<input ng-model="pessoa.pessoa_nome" placeholder="Nome" id="pessoa_nome" type="text" class="validate">
+			        </div>
+		    	
+	    	</div>
+		 
+		 	<button type="submit" class="btn waves-effect waves-light blue">Submeter</button>
+	   </form>
 	</div>
 
 </main>
