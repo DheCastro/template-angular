@@ -11,6 +11,22 @@
 	    	</div>
 		 
 		 	<button type="submit" class="btn waves-effect waves-light blue">Submeter</button>
+			
+			<table class="striped">
+		 		<thead>
+		 			<tr>
+		 				<th>Id</th>
+		 				<th>Nome</th>
+		 			</tr>
+		 		</thead>
+		 		<tbody>
+		 			<tr ng-repeat="pessoa in indControl.lista_pessoas" >
+		 				<td>{{pessoa.pessoa_id}}</td>
+		 				<td>{{pessoa.pessoa_nome}}</td>
+		 			</tr>
+		 		</tbody>
+		 	</table>
+			
 	   </form>
 	</div>
 

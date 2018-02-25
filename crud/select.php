@@ -1,13 +1,6 @@
 <?php
-include 'student.php';
-
-
-
-$obj=new Student();
-$student_list=$obj->student_list($_GET['page'],$_GET['search_input']);
-
-
-echo json_encode($student_list);
-
-
+	include 'pessoa.php';
+	$obj=new Pessoa();
+	$lista_pessoas=$obj->listar_pessoas();
+	echo json_encode($lista_pessoas);
 ?>

@@ -22,17 +22,9 @@ class Pessoa
 
     
     // Lista pessoas
-    public function pessoa_list($page=1,$search_input=''){
-       $perpage=10;
-       $page=($page-1)*$perpage;
-       
-       $search='';
-       if($search_input!=''){
-         $search="WHERE ( pessoa_nome LIKE '%$search_input%')";  
-       }
-      
+    public function listar_pessoas(){
      
-       $sql = "SELECT * FROM pessoa $search ORDER BY pessoa_id desc LIMIT $page,$perpage";
+       $sql = "SELECT * FROM pessoa ORDER BY pessoa_id desc";
      
        $query=  $this->conn->query($sql);
        $pessoa=array();
@@ -41,9 +33,8 @@ class Pessoa
           $pessoa['pessoa_data'][]= $row;
        }
        }
-       
-       
-      $count_sql = "SELECT COUNT(*) FROM pessoa $search";
+	   
+      $count_sql = "SELECT COUNT(*) FROM pessoa";
       $query=  $this->conn->query($count_sql);
       $total = mysqli_fetch_row($query);
       $pessoa['total'][]= $total;
@@ -71,8 +62,7 @@ class Pessoa
         }
           
     }
-    
-   
+
     function __destruct() {
     mysqli_close($this->conn);  
     }
