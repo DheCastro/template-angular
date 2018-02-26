@@ -1,7 +1,8 @@
 <main>
 	
-	<div class="container" > 
-		<form method="post"  id="criar_pessoa_form" ng-submit="indControl.addPessoa(pessoa)" >
+	<div class="container" >
+
+		<form method="post"  id="criar_pessoa_form" ng-submit="indControl.inserirPessoa(pessoa)" >
 			<div class="row">
 				
 					<div class="input-field col s6">
@@ -10,24 +11,26 @@
 		    	
 	    	</div>
 		 
-		 	<button type="submit" class="btn waves-effect waves-light blue">Submeter</button>
+		 	<button type="submit" class="btn waves-effect waves-light blue">Salvar</button>
+		</form>
 			
-			<table class="striped">
-		 		<thead>
-		 			<tr>
-		 				<th>Id</th>
-		 				<th>Nome</th>
-		 			</tr>
-		 		</thead>
-		 		<tbody>
-		 			<tr ng-repeat="pessoa in indControl.lista_pessoas" >
-		 				<td>{{pessoa.pessoa_id}}</td>
-		 				<td>{{pessoa.pessoa_nome}}</td>
-		 			</tr>
-		 		</tbody>
-		 	</table>
+		<table class="striped">
+	 		<thead>
+	 			<tr>
+	 				<th>Id</th>
+	 				<th>Nome</th>
+	 			</tr>
+	 		</thead>
+	 		<tbody>
+	 			<tr ng-repeat="pessoa in indControl.lista_pessoas" >
+	 				<td>{{pessoa.pessoa_id}}</td>
+	 				<td>{{pessoa.pessoa_nome}}</td>
+	 				<td><button ng-click="indControl.deletarPessoa(pessoa.pessoa_id)" class="btn waves-effect waves-light red">Deletar</button></td>
+	 			</tr>
+	 		</tbody>
+	 	</table>
 			
-	   </form>
+	   
 	</div>
 
 </main>
