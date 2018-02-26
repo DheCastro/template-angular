@@ -12,6 +12,8 @@ angular.module("template_ang")
         });
     };
 	
+    vm.carregarDados();
+    
 	this.inserirPessoa = function(pessoa){
 		$http.post('crud/insert.php', pessoa).then(function (response) {
         vm.msg = response.data.message;
