@@ -1,33 +1,31 @@
 angular.module("template_ang")
 .controller("indexController", function($scope, $http){
 
-	var vm = this;
-
 	$scope.titulo = "Template Angular";
 
-	this.carregarDados = function () {
+	var carregarDados = function () {
         $http.get('crud/select.php').then(function (response) {
-            vm.lista_pessoas = response.data.pessoa_data;
+            $scope.lista_pessoas = response.data.pessoa_data;
             $scope.total_row = response.data.total;
         });
     };
 	
-    vm.carregarDados();
-    
-	this.inserirPessoa = function(pessoa){
+    carregarDados();
+
+	$scope.inserirPessoa = function(pessoa){
 		$http.post('crud/insert.php', pessoa).then(function (response) {
-        vm.msg = response.data.message;
+        $scope.msg = response.data.message;
         document.getElementById("criar_pessoa_form").reset();
-		vm.carregarDados();
-		alert(vm.msg);
+		carregarDados();
+		alert($scope.msg);
 		});
     };
 
-    this.deletarPessoa = function (id) {
+    $scope.deletarPessoa = function (id) {
         $http.delete('crud/delete.php?pessoa_id=' + id).then(function (response) {
-            vm.msg = response.data.message;
-            vm.carregarDados();
-            alert(vm.msg);
+            $scope.msg = response.data.message;
+            carregarDados();
+            alert($scope.msg);
         });
     };
 	

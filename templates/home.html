@@ -2,7 +2,7 @@
 	
 	<div class="container" >
 
-		<form method="post"  id="criar_pessoa_form" ng-submit="indControl.inserirPessoa(pessoa)" >
+		<form method="post"  id="criar_pessoa_form" ng-submit="inserirPessoa(pessoa)" >
 			<div class="row">
 				
 					<div class="input-field col s6">
@@ -22,10 +22,10 @@
 	 			</tr>
 	 		</thead>
 	 		<tbody>
-	 			<tr ng-repeat="pessoa in indControl.lista_pessoas" >
+	 			<tr ng-repeat="pessoa in lista_pessoas" >
 	 				<td>{{pessoa.pessoa_id}}</td>
 	 				<td>{{pessoa.pessoa_nome}}</td>
-	 				<td><button ng-click="indControl.deletarPessoa(pessoa.pessoa_id)" class="btn waves-effect waves-light red">Deletar</button></td>
+	 				<td><button ng-click="deletarPessoa(pessoa.pessoa_id)" class="btn waves-effect waves-light red">Deletar</button></td>
 	 			</tr>
 	 		</tbody>
 	 	</table>
