@@ -15,7 +15,7 @@ angular.module("template_ang")
 	$scope.inserirPessoa = function(pessoa){
 		$http.post('crud/insert.php', pessoa).then(function (response) {
         $scope.msg = response.data.message;
-        document.getElementById("criar_pessoa_form").reset();
+        document.getElementById("pessoa_nome").value = '';
 		carregarDados();
 		alert($scope.msg);
 		});
