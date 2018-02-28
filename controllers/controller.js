@@ -33,6 +33,11 @@ angular.module("template_ang")
         $http.get('crud/selectone.php?nome_pesquisa=' + nome_pesquisa).then(function (response) {
             $scope.lista_pessoas = response.data.pessoa_data;
         });
+        document.getElementById("nome_pesquisa").value = '';
+    };
+
+    $scope.listarTodos = function () {
+        carregarDados();
     };
 	
 })
