@@ -30,10 +30,13 @@ angular.module("template_ang")
     };
 
     $scope.carregarPorNome = function (nome_pesquisa) {
-        $http.get('crud/selectone.php?nome_pesquisa=' + nome_pesquisa).then(function (response) {
-            $scope.lista_pessoas = response.data.pessoa_data;
-        });
-        document.getElementById("nome_pesquisa").value = '';
+        
+        if(!document.getElementById("nome_pesquisa").value == ''){
+            $http.get('crud/selectone.php?nome_pesquisa=' + nome_pesquisa).then(function (response) {
+                $scope.lista_pessoas = response.data.pessoa_data;
+            });
+            document.getElementById("nome_pesquisa").value = '';
+        }
     };
 
     $scope.listarTodos = function () {
