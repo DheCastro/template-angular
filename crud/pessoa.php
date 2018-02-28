@@ -44,6 +44,28 @@ class Pessoa
     return $pessoa;  
     }    
 
+    // Busca pessoa por nome
+    public function busca_pessoa_por_nome($nome_pesquisa=''){
+       $pesquisa='';
+       if($nome_pesquisa!=''){
+         $pesquisa="WHERE ( pessoa_nome LIKE '%$nome_pesquisa%' )";  
+       }
+      
+     
+       $sql = "SELECT * FROM pessoa $pesquisa ORDER BY pessoa_id desc";
+     
+       $query=  $this->conn->query($sql);
+       $pessoa=array();
+       if ($query->num_rows > 0) {
+       while ($row = $query->fetch_assoc()) {
+          $pessoa['pessoa_data'][]= $row;
+       }
+       }
+       
+       
+    return $pessoa;  
+    }
+
     // Insert de Pessoa no banco
     public function criar_pessoa($post_data=array()){
        $pessoa_nome='';

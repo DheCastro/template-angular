@@ -28,5 +28,11 @@ angular.module("template_ang")
             alert($scope.msg);
         });
     };
+
+    $scope.carregarPorNome = function (nome_pesquisa) {
+        $http.get('crud/selectone.php?nome_pesquisa=' + nome_pesquisa).then(function (response) {
+            $scope.lista_pessoas = response.data.pessoa_data;
+        });
+    };
 	
 })
