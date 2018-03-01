@@ -42,5 +42,10 @@ angular.module("template_ang")
     $scope.listarTodos = function () {
         carregarDados();
     };
+
+    $scope.abrindoModal = function () {
+        $(".modal").modal();
+        $('#modal1').modal('open');
+    };
 	
 })

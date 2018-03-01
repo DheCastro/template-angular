@@ -36,12 +36,24 @@
 		 			<tr ng-repeat="pessoa in lista_pessoas" >
 		 				<td>{{pessoa.pessoa_id}}</td>
 		 				<td>{{pessoa.pessoa_nome}}</td>
+		 				<td><button ng-click="abrindoModal()" class="btn waves-effect waves-light green">Editar</button></td>
 		 				<td><button ng-click="deletarPessoa(pessoa.pessoa_id)" class="btn waves-effect waves-light red">Deletar</button></td>
 		 			</tr>
 		 		</tbody>
 		 	</table>
 		</div>
-	   
+
 	</div>
 
 </main>
+
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+  </div>	
