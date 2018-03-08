@@ -30,7 +30,6 @@ angular.module("template_ang")
     };
 
     $scope.carregarPorNome = function (nome_pesquisa) {
-        
         if(!document.getElementById("nome_pesquisa").value == ''){
             $http.get('crud/selectone.php?nome_pesquisa=' + nome_pesquisa).then(function (response) {
                 $scope.lista_pessoas = response.data.pessoa_data;
@@ -43,9 +42,19 @@ angular.module("template_ang")
         carregarDados();
     };
 
-    $scope.abrindoModal = function () {
+    $scope.editarPessoa = function (pessoa) {
+        $scope.pessoa = pessoa;
         $(".modal").modal();
         $('#modal1').modal('open');
+    };
+
+    $scope.atualizarPessoa = function (pessoa) {
+        $http.put('crud/update.php', pessoa).then(function (response) {
+            $scope.msg = response.data.message;
+            $('#modal1').modal('close');
+            carregarDados();
+            alert($scope.msg);
+        });
     };
 	
 })

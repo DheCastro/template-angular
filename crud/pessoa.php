@@ -85,6 +85,36 @@ class Pessoa
           
     }
 
+
+    public function atualizar_pessoa($post_data=array()){
+       
+       if( isset($post_data->pessoa_id)){
+       $pessoa_id=mysqli_real_escape_string($this->conn,trim($post_data->pessoa_id));
+           
+       $pessoa_nome='';
+       if(isset($post_data->pessoa_nome)){
+       $pessoa_nome= mysqli_real_escape_string($this->conn,trim($post_data->pessoa_nome));
+       }
+       
+
+       $sql="UPDATE pessoa SET pessoa_nome='$pessoa_nome' WHERE pessoa_id =$pessoa_id";
+     
+        $result=  $this->conn->query($sql);
+        
+         
+         unset($post_data->pessoa_id); 
+         if($result){
+          return 'Pessoa atualizada com sucesso';     
+        }else{
+         return 'Erro ao atualizar pessoa';     
+        }
+          
+           
+           
+      
+       }   
+    }
+
     // Delete de Pessoa no banco
     public function deletar_pessoa($id){
         
