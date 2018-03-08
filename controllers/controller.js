@@ -49,12 +49,12 @@ angular.module("template_ang")
     };
 
     $scope.atualizarPessoa = function (pessoa) {
-        $http.put('crud/update.php', pessoa).then(function (response) {
+        $http.put('crud/update.php', $scope.pessoa).then(function (response) {
             $scope.msg = response.data.message;
             $('#modal1').modal('close');
             carregarDados();
             alert($scope.msg);
         });
     };
-	
+
 })
